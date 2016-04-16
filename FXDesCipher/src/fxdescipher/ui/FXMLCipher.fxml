@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" prefHeight="672.0" prefWidth="686.0" stylesheets="@../resource/css/style.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxdescipher.ctrl.FXMLCipherController">
+   <children>
+      <GridPane fx:id="gpn_formContainer" layoutX="6.0" layoutY="4.0" prefHeight="290.0" prefWidth="677.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="86.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="449.0" minWidth="10.0" prefWidth="449.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="46.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="lbl_key" text="Clave:" />
+            <Label fx:id="lbl_mode" text="Modo:" GridPane.rowIndex="2" />
+            <Label fx:id="lbl_function" text="Función:" GridPane.rowIndex="3" />
+            <Label fx:id="lbl_text" text="Texto:" GridPane.rowIndex="4" />
+            <Label fx:id="lbl_path" text="Ruta:" GridPane.rowIndex="7" />
+            <TextField fx:id="txt_key" GridPane.columnIndex="1" />
+            <Pane fx:id="pn_modeContainer" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <RadioButton fx:id="rb_ecb" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" selected="true" text="ECB">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="tgrb_mode" />
+                     </toggleGroup>
+                     <tooltip>
+                        <Tooltip fx:id="tip_ecb" text="Electronic code Book" />
+                     </tooltip>
+                  </RadioButton>
+                  <RadioButton fx:id="rb_cbc" layoutX="305.0" layoutY="5.0" mnemonicParsing="false" text="CBC" toggleGroup="$tgrb_mode">
+                     <tooltip>
+                        <Tooltip fx:id="tip_cbc" text="Cipher Block Chaining" />
+                     </tooltip>
+                  </RadioButton>
+                  <RadioButton fx:id="rb_cfb" layoutX="140.0" layoutY="9.0" mnemonicParsing="false" text="CFB" toggleGroup="$tgrb_mode">
+                     <tooltip>
+                        <Tooltip fx:id="tip_cfb" text="Cipher Feedback Mode" />
+                     </tooltip>
+                  </RadioButton>
+               </children>
+            </Pane>
+            <Pane fx:id="pn_function" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <RadioButton fx:id="rb_encrypt" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" selected="true" text="Encriptar">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="tgrb_function" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rb_decrypt" layoutX="140.0" layoutY="9.0" mnemonicParsing="false" text="Desencriptar" toggleGroup="$tgrb_function" />
+               </children>
+            </Pane>
+            <Label fx:id="lbl_algorithm" text="Algoritmo:" GridPane.rowIndex="1" />
+            <Pane fx:id="pn_algorithmContainer" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <RadioButton fx:id="rb_des" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" selected="true" text="Des">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="tgrb_algorithm" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rb_tripleDes" layoutX="140.0" layoutY="7.0" mnemonicParsing="false" text="3Des" toggleGroup="$tgrb_algorithm" />
+               </children>
+            </Pane>
+            <TextArea fx:id="txta_text" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="3" />
+            <TextField fx:id="txt_path" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Button fx:id="btn_generateKey" onAction="#handleBtn_generateKey" text="_Generar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button fx:id="btn_explorer" disable="true" onAction="#handleBtn_path" text="_Explorar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+            <CheckBox fx:id="ckb_text" mnemonicParsing="false" selected="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Button fx:id="btn_explorerConfig" onAction="#handleBtn_explorerConfig" text="E_xplorar" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+         </children>
+      </GridPane>
+      <Separator layoutX="9.0" layoutY="306.0" prefHeight="6.0" prefWidth="668.0" />
+      <TextArea fx:id="txta_result" editable="false" layoutX="14.0" layoutY="320.0" prefHeight="290.0" prefWidth="660.0" wrapText="true" />
+      <Button fx:id="btn_start" layoutX="186.0" layoutY="619.0" onAction="#handleBtn_start" prefHeight="39.0" prefWidth="94.0" text="_Iniciar" />
+      <Button fx:id="btn_clear" layoutX="295.0" layoutY="619.0" onAction="#handleBtn_clear" prefHeight="39.0" prefWidth="94.0" text="_Limpiar" />
+      <Button fx:id="btn_save" layoutX="406.0" layoutY="619.0" onAction="#handleBtn_save" prefHeight="39.0" prefWidth="94.0" text="_Guardar" />
+   </children>
+</AnchorPane>
